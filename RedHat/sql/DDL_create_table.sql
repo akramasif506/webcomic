@@ -10,6 +10,7 @@ create table mysql.comic_details
 
 
 Sampe DML 
+--  NOT TO EXECUTE
 /*
 insert into mysql.comic_details values( "Elefino","Hell if I know",28,"https://xkcd.com//28/info.0.json","elefino.jpg","https://imgs.xkcd.com/comics/elefino.jpg")
 insert into mysql.comic_details values( "Secret Worlds","No two adjacent circles are the same color.",52,"https://xkcd.com//52/info.0.json","secret_worlds.jpg","https://imgs.xkcd.com/comics/secret_worlds.jpg")
