@@ -1,0 +1,23 @@
+2021-09-05 23:00:48,228 -  Started at 2021-09-05 23:00:48.227626
+2021-09-05 23:00:48,228 -  Fetching data from config file 
+2021-09-05 23:00:48,228 -  Trying to connect database  
+2021-09-05 23:00:48,393 -  Fetching total 15 comic
+2021-09-05 23:00:48,393 -  Processing for comic number  13
+2021-09-05 23:00:50,261 -  Processing for comic number  40
+2021-09-05 23:00:51,860 -  Processing for comic number  52
+2021-09-05 23:00:53,454 -  Processing for comic number  64
+2021-09-05 23:00:54,782 -  Processing for comic number  49
+2021-09-05 23:00:55,259 -  Processing for comic number  28
+2021-09-05 23:00:57,259 -  Processing for comic number  62
+2021-09-05 23:00:58,572 -  Processing for comic number  10
+2021-09-05 23:00:59,535 -  Processing for comic number  13
+2021-09-05 23:01:00,070 -  Processing for comic number  58
+2021-09-05 23:01:00,544 -  Processing for comic number  1
+2021-09-05 23:01:01,838 -  Processing for comic number  32
+2021-09-05 23:01:03,414 -  Processing for comic number  49
+2021-09-05 23:01:03,928 -  Processing for comic number  13
+2021-09-05 23:01:04,531 -  Processing for comic number  3
+2021-09-05 23:01:06,697 -  DB commit 
+2021-09-05 23:01:06,817 -  Completed at 2021-09-05 23:01:06.817740
+2021-09-05 23:01:06,817 -  Completed 
+2021-09-05 23:01:06,817 -  Duration  0:00:18.590114

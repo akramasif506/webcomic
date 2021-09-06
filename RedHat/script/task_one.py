@@ -6,6 +6,8 @@ import json
 import random
 from pprint import pprint
 from mysql import connector
+import logging
+from datetime import datetime
 
 def get_cofig(config_path):
     rd = open(config_path).read()
@@ -46,27 +48,44 @@ def connect_db(db_properties):
 
 
 if __name__ == "__main__":
-    config_path = sys.argv[1] #"E:\\Akram\\RedHat\\conf\\config.json"
-    properties = get_cofig(config_path)
-    base_url = properties['app_properties']['base_url']
-    number_of_comic = properties['app_properties']['number_of_comic']
-    comic_number_range = properties['app_properties']['comic_number_range']
-    db_properties = properties['db_properties']
-    mydb = connect_db(db_properties)
-    db_cursor = mydb.cursor()
-    table = properties['app_properties']['table_name']
-    final_dict = []
-    sql_insert_list = []
-    for num in range(number_of_comic):
-        comic_id = random.randint(1,comic_number_range)
-        url = base_url + "/" + str(comic_id) + "/info.0.json"
-        data = requests.get(url).json()
-        output_dict,sql_insert_list = parser(data,url,table)
-        final_dict.append(output_dict)
-    pprint(final_dict,sort_dicts=False)
-    for statement in sql_insert_list:
-        #print(statement)
-        db_cursor.execute(statement)
+    try:
+        start_time = datetime.now()
+        config_path = sys.argv[1]
+        properties = get_cofig(config_path)
+        logging.basicConfig(format='%(asctime)s - %(message)s',filename=properties['app_properties']['log'] + "/log_file.log",filemode='w', level=logging.INFO)
+        logging.info(' Started at ' + str(start_time))
+        logging.info(' Fetching data from config file ')
+        base_url = properties['app_properties']['base_url']
+        number_of_comic = properties['app_properties']['number_of_comic']
+        comic_number_range = properties['app_properties']['comic_number_range']
+        logging.info(' Trying to connect database  ')
+        db_properties = properties['db_properties']
+        mydb = connect_db(db_properties)
+        db_cursor = mydb.cursor()
+        table = properties['app_properties']['table_name']
+        final_dict = []
+        sql_insert_list = []
+        logging.info(' Fetching total ' + str(number_of_comic) + " comic")
+        for num in range(number_of_comic):
+            comic_id = random.randint(1,comic_number_range)
+            logging.info(' Processing for comic number  ' + str(comic_id))
+            url = base_url + "/" + str(comic_id) + "/info.0.json"
+            data = requests.get(url).json()
+            output_dict,sql_insert_list = parser(data,url,table)
+            final_dict.append(output_dict)
+        pprint(final_dict,sort_dicts=False)
+        for statement in sql_insert_list:
+            #print(statement)
+            db_cursor.execute(statement)
+        logging.info(' DB commit ')
+        mydb.commit()
+        mydb.close()
+        end_time = datetime.now()
+        logging.info(' Completed at ' + str(end_time))
+        logging.info(' Completed ')
+        logging.info(' Duration  ' + str(end_time - start_time))
+    except Exception as e:
+        print("An error")
+        print(e)
+        logging.error(e)
         
-    mydb.commit()
-    mydb.close()

@@ -4,7 +4,8 @@
 		"base_url" : "https://xkcd.com/",
 		"number_of_comic" : 15,
 		"comic_number_range" : 87,
-		"table_name" : "mysql.comic_details"
+		"table_name" : "mysql.comic_details",
+		"log" : "E:\\Akram\\RedHat\\log\\"
 	},
 	"db_properties" : 
 	{
